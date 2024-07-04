@@ -7,18 +7,23 @@ import { AppComponent } from './app.component';
 
 //Rutas
 import { APP_ROUTING } from './app.routes';
+import { HomeComponent } from './components/home/home.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    NavbarComponent
   ],
   imports: [
      BrowserModule,
      RouterModule,
-     APP_ROUTING
+     APP_ROUTING,
+     
   ],
   providers: [],
   bootstrap: [AppComponent]
