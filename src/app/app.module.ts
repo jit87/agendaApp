@@ -4,11 +4,17 @@ import { RouterModule, Routes } from '@angular/router';
 
 //Componentes
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistroComponent } from './components/registro/registro.component';
 
 //Rutas
 import { APP_ROUTING } from './app.routes';
 import { HomeComponent } from './components/home/home.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -17,14 +23,19 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    DashboardComponent,
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
      BrowserModule,
      RouterModule,
      APP_ROUTING,
-     
+     FormsModule,
+     HttpClientModule
   ],
+  
   providers: [],
   bootstrap: [AppComponent]
 })

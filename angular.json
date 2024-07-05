@@ -85,7 +85,8 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+               "src/assets/vendor/animate.css"
             ],
             "scripts": []
           }

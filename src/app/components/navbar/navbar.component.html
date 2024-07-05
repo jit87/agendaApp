@@ -1,16 +1,23 @@
 <header>
-    <nav>
-        <div class="logo">
-            <img src="logo.png" alt="TaskMaster Logo">
-        </div>
-        <ul class="nav-links">
-            <li><a [routerLink]="['home']">Inicio</a></li>
-            <li><a href="#">Características</a></li>
-            <li><a href="#">Precios</a></li>
-            <li><a href="#">Contacto</a></li>
-        </ul>
-        <div class="cta">
-            <a href="#" class="btn">Registrarse</a>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a [routerLink]="['home']" class="navbar-brand logo">
+            <img src="https://icons.iconarchive.com/icons/mattahan/buuf/128/Task-List-icon.png" alt="Logo" height="70" width="70">
+            <span style="font-family: chivo;font-size:x-large;">TaskMaster</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <!--<li class="nav-item">
+                    <a class="nav-link" [routerLink]="['home']" style="font-weight: bold;">Inicio</a>
+                </li>-->
+            </ul>
+            <div class="navbar-nav">
+                <a class="btn btn-outline-primary mr-2" [routerLink]="['login']">Iniciar sesión</a>
+                <a class="btn btn-danger" [routerLink]="['registro']">Registrarse</a>
+            </div>
         </div>
     </nav>
 </header>
