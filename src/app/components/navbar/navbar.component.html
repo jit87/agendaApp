@@ -20,7 +20,7 @@
             <div class="navbar-nav">
                 <a *ngIf="!auth.estaAutenticado()" class="btn btn-outline-primary mr-2" [routerLink]="['login']">Iniciar sesión</a>
                 <a *ngIf="!auth.estaAutenticado()" class="btn btn-danger" [routerLink]="['registro']">Registrarse</a>
-                <a *ngIf="auth.estaAutenticado()"  class="btn btn-danger" (click)="auth.logout()" style="color:white;cursor: pointer;">Salir</a>
+                <a *ngIf="auth.estaAutenticado()"  class="btn btn-danger" (click)="auth.logout()" style="color:white;cursor: pointer;">Cerrar sesión</a>
             </div>
         </div>
     </nav>
