@@ -13,10 +13,14 @@
                 <!--<li class="nav-item">
                     <a class="nav-link" [routerLink]="['home']" style="font-weight: bold;">Inicio</a>
                 </li>-->
+                <li *ngIf="auth.estaAutenticado()" class="nav-item">
+                    <a class="nav-link" [routerLink]="['dashboard']" style="font-weight: bold;">Mis tareas</a>
+                </li>
             </ul>
             <div class="navbar-nav">
-                <a class="btn btn-outline-primary mr-2" [routerLink]="['login']">Iniciar sesión</a>
-                <a class="btn btn-danger" [routerLink]="['registro']">Registrarse</a>
+                <a *ngIf="!auth.estaAutenticado()" class="btn btn-outline-primary mr-2" [routerLink]="['login']">Iniciar sesión</a>
+                <a *ngIf="!auth.estaAutenticado()" class="btn btn-danger" [routerLink]="['registro']">Registrarse</a>
+                <a *ngIf="auth.estaAutenticado()"  class="btn btn-danger" (click)="auth.logout()" style="color:white;cursor: pointer;">Salir</a>
             </div>
         </div>
     </nav>

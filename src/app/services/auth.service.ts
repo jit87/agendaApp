@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UsuarioModel } from '../models/usuario/usuario.model';
+import { environment } from '../../environment';
+
 
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +14,7 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   private url = 'https://identitytoolkit.googleapis.com/v1/accounts:';
-  private apikey = 'AIzaSyDvh-Xsk5qigKtOQ0wFciPp703YxMjsI3I';
+
   userToken: string | null | undefined;
 
   //INFO:
@@ -22,13 +25,27 @@ export class AuthService {
   //Login
   //https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router ) {
     this.leerToken();
   }
    
 
   logout() {
-    localStorage.removeItem("token");
+    Swal.fire({
+      title: 'Cerrando sesión...',
+      html: 'Espere un momento',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+        setTimeout(() => {
+          localStorage.removeItem('token');
+          this.router.navigateByUrl('/home').then(() => {
+            window.location.reload();
+          });
+        }, 1000);
+      }
+    });
   }
 
 
@@ -40,7 +57,7 @@ export class AuthService {
         returnSecureToken: true
     };
      return this.http.post(
-      `${this.url}signInWithPassword?key=${this.apikey}`,
+      `${this.url}signInWithPassword?key=${environment.firebaseConfig.apiKey}`,
        authData
     ).pipe(
       map((resp: any) => {
@@ -59,7 +76,7 @@ export class AuthService {
       returnSecureToken: true
     };
     return this.http.post(
-      `${this.url}signUp?key=${this.apikey}`,
+      `${this.url}signUp?key=${environment.firebaseConfig.apiKey}`,
       authData
     ).pipe(
       map((resp: any) => {

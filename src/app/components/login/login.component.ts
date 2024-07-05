@@ -55,7 +55,7 @@ export class LoginComponent {
       if (this.recordarme) {
          localStorage.setItem('email', this.usuario.email || '');
       }
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/dashboard');
     }, (err) => {
         console.log(err.error.error.message);
         Swal.fire({
