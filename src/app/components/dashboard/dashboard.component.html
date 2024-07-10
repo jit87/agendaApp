@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaskMaster Dashboard</title>
-    <link rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                     <h1>Hoy</h1>
                 </div>
                 <div class="header-actions">
-                    <button class="btn btn-secondary">Añadir Tarea</button>
+                    <button type="button" class="btn btn-primary" (click)="mostrarFormulario()">+ Añadir Tarea</button>
                 </div>
             </header>
             <section class="tasks">
@@ -36,13 +36,34 @@
                     <input type="checkbox" id="task1">
                     <label for="task1">Tarea 1</label>
                 </div>
-                <div class="task">
-                    <input type="checkbox" id="task2">
-                    <label for="task2">Tarea 2</label>
-                </div>
-                <div class="task">
-                    <input type="checkbox" id="task3">
-                    <label for="task3">Tarea 3</label>
+            </section>
+            <hr>
+            <section>
+                <!-- Formulario para agregar tarea -->
+                <div class="add-task-container animated fadeIn" *ngIf="this.mostrarForm">
+                    <div>
+                        <form>
+                            <br>
+                            <h4 class="mb-2 small black"> Hoy {{ fecha | date:'dd/MM/yyyy' }}</h4>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <br>
+                            <div class="form-group">
+                                <button (click)="mostrarCalendario()" type="button" class="position-absolute btn btn-primary">Vencimiento</button>
+                                <div *ngIf="mostrarCalendar" 
+                                     class="float-left"
+                                     style="top: 80px; left: 0; z-index: 1000;">
+                                    <full-calendar [options]="calendarOptions" style="height: 200px; width: 300px; margin-left: 150px;">
+                                    </full-calendar>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary float-right">Guardar</button>
+                                <button type="button" class="btn btn-danger ml-2 float-right"
+                                    (click)="ocultarFormulario()">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </section>
         </main>

@@ -7,6 +7,9 @@ import { environment } from '../../environment';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import * as firebase from "firebase/app";
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +19,7 @@ export class AuthService {
   private url = 'https://identitytoolkit.googleapis.com/v1/accounts:';
 
   userToken: string | null | undefined;
+
 
   //INFO:
   //Crear nuevo usuario
@@ -88,6 +92,7 @@ export class AuthService {
 
 
 
+
   private guardarToken(idToken: string) {
     this.userToken = idToken;
     localStorage.setItem('token', idToken);
@@ -100,6 +105,8 @@ export class AuthService {
 
 
 
+  
+
 
   leerToken() {
     if (localStorage.getItem('token')) {
@@ -109,6 +116,7 @@ export class AuthService {
     }
     return this.userToken; 
   }
+
 
 
 

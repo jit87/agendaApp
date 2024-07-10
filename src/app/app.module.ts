@@ -4,6 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 //Componentes
@@ -38,8 +42,9 @@ import { environment } from '../environment';
      RouterModule,
      APP_ROUTING,
      FormsModule,
-     HttpClientModule
-    
+     HttpClientModule,
+     AngularFireModule.initializeApp(environment.firebaseConfig),
+     FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
