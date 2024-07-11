@@ -32,43 +32,71 @@
                 </div>
             </header>
             <section class="tasks">
-                <div class="task">
+                <div class="task" *ngFor="let tarea in tareas">
                     <input type="checkbox" id="task1">
-                    <label for="task1">Tarea 1</label>
+                    <label for="task1">{{tarea}}</label>
                 </div>
             </section>
-            <hr>
-            <section>
-                <!-- Formulario para agregar tarea -->
-                <div class="add-task-container animated fadeIn" *ngIf="this.mostrarForm">
-                    <div>
-                        <form>
-                            <br>
-                            <h4 class="mb-2 small black"> Hoy {{ fecha | date:'dd/MM/yyyy' }}</h4>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            <br>
+            <br>
+            <br>
+        <section>
+            <!-- Formulario para agregar tarea -->
+            <div class="add-task-container animated fadeIn" *ngIf="mostrarForm">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Nueva Tarea</h4>
+                    </div>
+                    <div class="card-body">
+                        <form (ngSubmit)="guardarDatos(f)" #f="ngForm">
                             <div class="form-group">
-                                <button (click)="mostrarCalendario()" type="button" class="position-absolute btn btn-primary">Vencimiento</button>
-                                <div *ngIf="mostrarCalendar" 
-                                     class="ml-2"
-                                     style="top: 80px; left: 10; z-index: 1000;width: 50%;">
-                                <mat-form-field>
-                                    <input matInput [matDatepicker]="myDatepicker">
-                                    <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
-                                    <mat-datepicker #myDatepicker></mat-datepicker>
-                                </mat-form-field>
+                                <label for="titulo">Título</label>
+                                <input type="text" 
+                                       class="form-control" 
+                                       id="titulo" 
+                                       placeholder="Título de la tarea"
+                                       [(ngModel)]="tarea.titulo" name="titulo">
+                            </div>
+                            <div class="form-group">
+                                <label for="descripcion">Descripción</label>
+                                <textarea class="form-control" 
+                                          id="descripcion" 
+                                          rows="3" 
+                                          placeholder="Descripción de la tarea"
+                                          [(ngModel)]="tarea.descripcion" 
+                                          name="descripcion" 
+                                          required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="vencimiento">Fecha de Vencimiento</label>
+                                <div class="input-group">
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="vencimiento" 
+                                           placeholder="Selecciona una fecha"
+                                           [(ngModel)]="tarea.vencimiento" 
+                                           name="vencimiento" 
+                                           readonly>
+                                    <div class="input-group-append">
+                                        <button (click)="mostrarCalendario()" type="button"
+                                            class="btn btn-primary">Vencimiento</button>
+                                    </div>
+                                </div>
+                                <div *ngIf="mostrarCalendar" class="calendar-container mt-2">
+                                    <app-calendar (fechaSeleccionada)="recibirFechaSeleccionada($event)"></app-calendar>
                                 </div>
                             </div>
                             <br>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary float-right">Guardar</button>
-                                <button type="button" class="btn btn-danger ml-2 float-right"
+                            <div class="form-group text-right">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <button type="button" class="btn btn-danger ml-2"
                                     (click)="ocultarFormulario()">Cancelar</button>
                             </div>
                         </form>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
+
         </main>
     </div>
 </body>

@@ -8,12 +8,6 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
-//Calendario
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatNativeDateModule } from '@angular/material/core';
-
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -21,6 +15,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 //Rutas
 import { APP_ROUTING } from './app.routes';
@@ -28,6 +23,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../environment';
+import { TareasService } from './services/tareas.service';
 
 
 
@@ -40,7 +36,8 @@ import { environment } from '../environment';
     NavbarComponent,
     DashboardComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    CalendarComponent
   ],
   imports: [
      BrowserModule,
@@ -48,13 +45,10 @@ import { environment } from '../environment';
      APP_ROUTING,
      FormsModule,
      HttpClientModule,
-     AngularFireModule.initializeApp(environment.firebaseConfig),
-     MatDatepickerModule,
-     MatFormFieldModule,
-     MatInputModule,
-     MatNativeDateModule
+     AngularFireModule.initializeApp(environment.firebaseConfig)
+     
   ],
-  providers: [],
+  providers: [TareasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

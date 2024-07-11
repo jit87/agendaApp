@@ -1,0 +1,12 @@
+<div class="calendar-container">
+    <div class="calendar-header">
+        <button (click)="previousMonth()">&lt;</button>
+        <h2>{{ monthNames[currentMonth] }} {{ currentYear }}</h2>
+        <button (click)="nextMonth()">&gt;</button>
+    </div>
+    <div class="calendar-grid">
+        <div *ngFor="let day of calendarDays" class="day" [class.today]="isToday(day)" (click)="guardarDia(day)">
+            {{ day }}
+        </div>
+    </div>
+</div>
