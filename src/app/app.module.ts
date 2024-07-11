@@ -7,7 +7,12 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { FullCalendarModule } from '@fullcalendar/angular';
+
+//Calendario
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 //Componentes
@@ -44,7 +49,10 @@ import { environment } from '../environment';
      FormsModule,
      HttpClientModule,
      AngularFireModule.initializeApp(environment.firebaseConfig),
-     FullCalendarModule
+     MatDatepickerModule,
+     MatFormFieldModule,
+     MatInputModule,
+     MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

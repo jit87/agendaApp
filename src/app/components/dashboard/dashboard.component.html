@@ -50,10 +50,13 @@
                             <div class="form-group">
                                 <button (click)="mostrarCalendario()" type="button" class="position-absolute btn btn-primary">Vencimiento</button>
                                 <div *ngIf="mostrarCalendar" 
-                                     class="float-left"
-                                     style="top: 80px; left: 0; z-index: 1000;">
-                                    <full-calendar [options]="calendarOptions" style="height: 200px; width: 300px; margin-left: 150px;">
-                                    </full-calendar>
+                                     class="ml-2"
+                                     style="top: 80px; left: 10; z-index: 1000;width: 50%;">
+                                <mat-form-field>
+                                    <input matInput [matDatepicker]="myDatepicker">
+                                    <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #myDatepicker></mat-datepicker>
+                                </mat-form-field>
                                 </div>
                             </div>
                             <br>
