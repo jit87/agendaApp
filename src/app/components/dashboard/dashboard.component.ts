@@ -27,15 +27,26 @@ export class DashboardComponent {
 
 
 
-  constructor(public auth: AuthService, public tareaService: TareasService, private route: ActivatedRoute) { }
+  constructor(public auth: AuthService, public tareaService: TareasService, private route: ActivatedRoute) {
+    this.cargarTareas();
+  }
 
   ngOnInit() {
     this.tareaService.getTareas().subscribe((resp: any) => {
-        this.tareas = resp;
-      });
-    }
-        
-  
+      this.tareas = Object.keys(resp).map(key => resp[key]);
+      console.log(this.tareas);
+    });
+  }   
+
+
+
+
+  cargarTareas() {
+     this.tareaService.getTareas().subscribe((resp: any) => {
+      this.tareas = Object.keys(resp).map(key => resp[key]);
+    });
+  }
+
 
 
   //FORMULARIO
@@ -98,6 +109,8 @@ export class DashboardComponent {
     let peticion: Observable<any>
 
     peticion = this.tareaService.crearTarea(this.tarea);
+
+    this.cargarTareas(); 
       
     peticion.subscribe(resp => {
       Swal.fire({

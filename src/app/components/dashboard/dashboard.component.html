@@ -28,13 +28,13 @@
                     <h1>Hoy</h1>
                 </div>
                 <div class="header-actions">
-                    <button type="button" class="btn btn-primary" (click)="mostrarFormulario()">+ Añadir Tarea</button>
+                    <button type="button" class="btn btn-outline-dark" (click)="mostrarFormulario()">+ Añadir Tarea</button>
                 </div>
             </header>
             <section class="tasks">
-                <div class="task" *ngFor="let tarea in tareas">
-                    <input type="checkbox" id="task1">
-                    <label for="task1">{{tarea}}</label>
+                <div class="task" *ngFor="let tarea of tareas">
+                    <input type="checkbox">
+                    <label>{{tarea.titulo}}</label>
                 </div>
             </section>
             <br>
@@ -77,8 +77,9 @@
                                            name="vencimiento" 
                                            readonly>
                                     <div class="input-group-append">
-                                        <button (click)="mostrarCalendario()" type="button"
-                                            class="btn btn-primary">Vencimiento</button>
+                                        <button (click)="mostrarCalendario()" 
+                                                type="button"
+                                                class="btn btn-outline-dark">Vencimiento</button>
                                     </div>
                                 </div>
                                 <div *ngIf="mostrarCalendar" class="calendar-container mt-2">

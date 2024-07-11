@@ -90,14 +90,7 @@ body {
     font-size: 24px;
 }
 
-.header-actions .btn {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-}
+
 
 .tasks .task {
     display: flex;
