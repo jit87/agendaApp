@@ -1,6 +1,6 @@
 export class TareaModel {
 
-  id?: string;
+  TareaId?: string;
   titulo: string;
   descripcion: string;
   completeda: boolean;
@@ -9,7 +9,7 @@ export class TareaModel {
     
 
   constructor() {
-        this.id = ''; 
+        this.TareaId = ''; 
         this.titulo = '';
         this.descripcion = '';
         this.completeda = false;

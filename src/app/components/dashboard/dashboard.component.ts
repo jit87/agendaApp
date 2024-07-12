@@ -34,17 +34,35 @@ export class DashboardComponent {
   ngOnInit() {
     this.tareaService.getTareas().subscribe((resp: any) => {
       this.tareas = Object.keys(resp).map(key => resp[key]);
-      console.log(this.tareas);
     });
   }   
 
 
-
+  
+  //GESTION DE TAREAS
 
   cargarTareas() {
      this.tareaService.getTareas().subscribe((resp: any) => {
       this.tareas = Object.keys(resp).map(key => resp[key]);
     });
+  }
+
+
+
+  eliminarTarea(Tarea: TareaModel) {
+    const tareaId = Tarea.TareaId?.toString(); 
+    let peticion: Observable<any>
+
+    if (tareaId != null) {
+      peticion = this.tareaService.elimninarTarea(tareaId);
+      
+      peticion.subscribe(resp => {
+          Swal.fire({
+            title: this.tarea.titulo,
+            text: 'Se actualizó correctamente'
+          });
+        });
+    }
   }
 
 
@@ -109,6 +127,8 @@ export class DashboardComponent {
     let peticion: Observable<any>
 
     peticion = this.tareaService.crearTarea(this.tarea);
+    
+    this.ocultarFormulario();
 
     this.cargarTareas(); 
       

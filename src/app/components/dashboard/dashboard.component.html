@@ -33,8 +33,18 @@
             </header>
             <section class="tasks">
                 <div class="task" *ngFor="let tarea of tareas">
-                    <input type="checkbox">
-                    <label>{{tarea.titulo}}</label>
+                    <div class="task-header">
+                        <input type="checkbox" [checked]="tarea.completeda">
+                        <label>{{ tarea.titulo }}</label>
+                    </div>
+                    <div class="task-footer">
+                       <!--<label>Completada</label>
+                        <input type="checkbox" >-->
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="close"  aria-label="Close" (click)="eliminarTarea(tarea)">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 </div>
             </section>
             <br>

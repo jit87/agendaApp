@@ -29,6 +29,11 @@ export class TareasService {
   }
 
 
+  elimninarTarea(tareaId: string): Observable<any> {
+    console.log(tareaId);
+    return this.http.delete(`${this.url}/tareas/${tareaId}.json`);
+  }
+
    
 
 
