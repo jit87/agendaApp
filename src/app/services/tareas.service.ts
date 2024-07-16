@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TareaModel } from '../models/tarea/tarea.model';
-import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, map, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +29,22 @@ export class TareasService {
   }
 
 
-  elimninarTarea(tareaId: string): Observable<any> {
-    console.log(tareaId);
-    return this.http.delete(`${this.url}/tareas/${tareaId}.json`);
+  elimninarTarea(tareaId: TareaModel): Observable<any> {
+    console.log(tareaId); 
+    const deleteUrl = `${this.url}/tareas/${tareaId}.json`; 
+    
+    return this.http.delete(deleteUrl).pipe(
+      catchError((error: HttpErrorResponse) => {
+          let errorMessage: string;
+          if (error.error instanceof ErrorEvent) {
+            errorMessage = `Error del cliente: ${error.error.message}`;
+          } else {
+            errorMessage = `Error del servidor: ${error.status} - ${error.message}`;
+          }
+        console.error(errorMessage);
+        return throwError(errorMessage);
+      })
+    );
   }
 
    

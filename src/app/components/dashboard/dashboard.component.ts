@@ -24,24 +24,36 @@ export class DashboardComponent {
 
   tarea: TareaModel = new TareaModel(); 
   tareas: TareaModel[] = [];
+  errorMessage: unknown;
 
 
 
   constructor(public auth: AuthService, public tareaService: TareasService, private route: ActivatedRoute) {
-    this.cargarTareas();
+
   }
 
   ngOnInit() {
-    this.tareaService.getTareas().subscribe((resp: any) => {
-      this.tareas = Object.keys(resp).map(key => resp[key]);
-    });
+    this.cargarTareas();
+    this.getTareaId(); 
   }   
 
 
   
   //GESTION DE TAREAS
 
-  cargarTareas() {
+
+  getTareaId() {
+    this.tareaService.getTareas().subscribe((resp: any) => {
+    this.tareas = Object.keys(resp).map(key => {
+      const tarea = resp[key];
+      tarea.tareaId = key;   
+      return tarea;
+    });
+  });
+  }
+
+
+  async cargarTareas() {
      this.tareaService.getTareas().subscribe((resp: any) => {
       this.tareas = Object.keys(resp).map(key => resp[key]);
     });
@@ -49,22 +61,37 @@ export class DashboardComponent {
 
 
 
-  eliminarTarea(Tarea: TareaModel) {
-    const tareaId = Tarea.TareaId?.toString(); 
-    let peticion: Observable<any>
+  async eliminarTarea(tareaId:any) {
+    try {
+      const result = await Swal.fire({
+        title: '¿Estás seguro?',
+        text: "No podrás revertir esto",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminarla',
+        cancelButtonText: 'Cancelar'
+      });
 
-    if (tareaId != null) {
-      peticion = this.tareaService.elimninarTarea(tareaId);
-      
-      peticion.subscribe(resp => {
-          Swal.fire({
-            title: this.tarea.titulo,
-            text: 'Se actualizó correctamente'
-          });
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Espere',
+          text: 'Eliminando la tarea',
+          icon: 'info',
+          allowOutsideClick: false
         });
-    }
+      }
+        Swal.showLoading();
+        await this.tareaService.elimninarTarea(tareaId).toPromise();
+        Swal.close(); 
+        this.cargarTareas();
+      } catch (error) {
+        this.errorMessage = error;
+        console.error('Error al borrar la tarea:', error);
+      } 
+        this.cargarTareas();
   }
-
 
 
   //FORMULARIO
@@ -72,6 +99,8 @@ export class DashboardComponent {
   mostrarFormulario() {
     this.mostrarForm = true; 
     this.fechaVencimiento = "";
+    this.tarea.titulo = "";
+    this.tarea.descripcion = ""; 
   }
 
 
@@ -130,16 +159,14 @@ export class DashboardComponent {
     
     this.ocultarFormulario();
 
-    this.cargarTareas(); 
-      
     peticion.subscribe(resp => {
       Swal.fire({
         title: this.tarea.titulo,
         text: 'Se actualizó correctamente'
       });
+      this.cargarTareas();
     });
-
-    
+ 
   }
 
   

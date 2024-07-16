@@ -41,9 +41,20 @@
                        <!--<label>Completada</label>
                         <input type="checkbox" >-->
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button type="button" class="close"  aria-label="Close" (click)="eliminarTarea(tarea)">
+                        <button type="button" class="close"  aria-label="Close" (click)="eliminarTarea(tarea.tareaId)">
                             <span aria-hidden="true">&times;</span>
                         </button>
+                    </div>
+                    <div class="form-group" style="display: none;">
+                        <label>Firebase ID</label>
+                        <br>
+                        <input type="text" 
+                        class="form-control" 
+                        placeholder="Firebase ID" 
+                        disabled="disabled" 
+                        [(ngModel)]="tarea.tareaId"
+                        name="id">
+                        <small class="form-text text-muted"></small>
                     </div>
                 </div>
             </section>
