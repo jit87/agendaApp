@@ -48,6 +48,11 @@ export class TareasService {
     );
   }
 
+
+  actualizarTarea(tarea: TareaModel) {
+     return this.http.put(`${this.url}/tareas/${tarea.tareaId}.json`, tarea.tareaId);
+  }
+
    
 
 

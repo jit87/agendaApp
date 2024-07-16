@@ -1,0 +1,47 @@
+
+<div class="add-task-container animated fadeIn" style="z-index:10;">
+    <div>
+        <button class="btn btn-outline-dark" routerLink="/dashboard">
+           &lArr; Volver
+        </button>
+    </div>
+    <br>
+    <div class="card">
+        <div class="card-header" [(ngModel)]="tarea.tareaId">
+            <h4>Revision de {{tarea.titulo}}</h4>
+        </div>
+        <div class="card-body">
+            <form  (ngSubmit)="actualizarTarea(f)" #f="ngForm">
+                <div class="form-group">
+                    <label for="titulo">Título</label>
+                    <input type="text" class="form-control" id="titulo" placeholder="Título de la tarea"
+                        name="titulo">
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <textarea class="form-control" id="descripcion" rows="3" placeholder="Descripción de la tarea"
+                        name="descripcion" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="vencimiento">Fecha de Vencimiento</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="vencimiento" placeholder="Selecciona una fecha"
+                             name="vencimiento" readonly>
+                        <div class="input-group-append">
+                            <button  type="button"
+                                class="btn btn-outline-dark">Vencimiento</button>
+                        </div>
+                    </div>
+                    <div class="calendar-container mt-2">
+                        <app-calendar></app-calendar>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary" >Modificar</button>
+                    <button type="button" class="btn btn-danger ml-2">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

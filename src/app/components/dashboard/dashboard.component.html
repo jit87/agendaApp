@@ -33,6 +33,7 @@
             </header>
             <section>   
                     <table class="table">
+
                         <tbody>         
                                 <tr *ngFor="let tarea of tareas">
                                     <td>
@@ -41,7 +42,7 @@
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-outline-dark" aria-label="Close">
-                                            <span aria-hidden="true" [routerLink]="">Revisar</span>
+                                            <span aria-hidden="true" [routerLink]="['/revisar', tarea.tareaId]">Revisar</span>
                                         </button>
                                     </td>
                               

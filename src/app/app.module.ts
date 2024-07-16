@@ -24,8 +24,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../environment';
 import { TareasService } from './services/tareas.service';
-
-
+import { RevisionComponent } from './components/revision/revision.component';
 
 
 
@@ -37,7 +36,8 @@ import { TareasService } from './services/tareas.service';
     DashboardComponent,
     LoginComponent,
     RegistroComponent,
-    CalendarComponent
+    CalendarComponent,
+    RevisionComponent
   ],
   imports: [
      BrowserModule,
