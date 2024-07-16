@@ -33,31 +33,71 @@ export class DashboardComponent {
   }
 
   ngOnInit() {
-    this.cargarTareas();
-    this.getTareaId(); 
+      this.cargarTareas();
+      this.getTareaId(); 
   }   
 
 
   
   //GESTION DE TAREAS
 
+  
+  guardarTarea(form: NgForm) {
+    
+    if (form.invalid) {
+      console.log("Formulario no valido")
+      return;
+    }
 
-  getTareaId() {
-    this.tareaService.getTareas().subscribe((resp: any) => {
-    this.tareas = Object.keys(resp).map(key => {
-      const tarea = resp[key];
-      tarea.tareaId = key;   
-      return tarea;
+    Swal.fire({
+      title: 'Espere',
+      text: 'Guardando información',
+      icon: 'info',
+      allowOutsideClick: false
+    })
+
+    Swal.showLoading();
+
+    let peticion: Observable<any>
+
+    peticion = this.tareaService.crearTarea(this.tarea);
+    
+    this.ocultarFormulario();
+
+    peticion.subscribe(resp => {
+      Swal.fire({
+        title: this.tarea.titulo,
+        text: 'Se actualizó correctamente'
+      });
+      this.getTareaId();
     });
-  });
+ 
   }
+
+
+
+
+
+ getTareaId() {
+    this.tareaService.getTareas().subscribe((resp: any) => { 
+          this.tareas = Object.keys(resp).map(key => {
+            const tarea = resp[key];
+            tarea.tareaId = key;   
+            return tarea;
+          });
+       });
+  }
+
+
+
 
 
   async cargarTareas() {
-     this.tareaService.getTareas().subscribe((resp: any) => {
-      this.tareas = Object.keys(resp).map(key => resp[key]);
+    this.tareaService.getTareas().subscribe((resp: any) => { 
+         this.tareas = Object.keys(resp).map(key => resp[key]);
     });
   }
+
 
 
 
@@ -83,14 +123,15 @@ export class DashboardComponent {
         });
       }
         Swal.showLoading();
-        await this.tareaService.elimninarTarea(tareaId).toPromise();
+        await this.tareaService.eliminarTarea(tareaId).toPromise();
         Swal.close(); 
-        this.cargarTareas();
+      
       } catch (error) {
         this.errorMessage = error;
         console.error('Error al borrar la tarea:', error);
-      } 
-        this.cargarTareas();
+    } 
+     
+    this.getTareaId();
   }
 
 
@@ -135,39 +176,6 @@ export class DashboardComponent {
 
 
 
-  //ENVIO DE DATOS
-
-  guardarDatos(form: NgForm) {
-    
-    if (form.invalid) {
-      console.log("Formulario no valido")
-      return;
-    }
-
-    Swal.fire({
-      title: 'Espere',
-      text: 'Guardando información',
-      icon: 'info',
-      allowOutsideClick: false
-    })
-
-    Swal.showLoading(); 
-
-    let peticion: Observable<any>
-
-    peticion = this.tareaService.crearTarea(this.tarea);
-    
-    this.ocultarFormulario();
-
-    peticion.subscribe(resp => {
-      Swal.fire({
-        title: this.tarea.titulo,
-        text: 'Se actualizó correctamente'
-      });
-      this.cargarTareas();
-    });
- 
-  }
 
   
 

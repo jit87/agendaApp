@@ -90,35 +90,3 @@ body {
     font-size: 24px;
 }
 
-
-
-.tasks .task {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.tasks .task label {
-    margin-left: 10px;
-}
-
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100px;
-    }
-
-    .sidebar-header img {
-        width: 100px;
-    }
-
-    .main-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .header-title h1 {
-        margin-bottom: 10px;
-    }
-
-}

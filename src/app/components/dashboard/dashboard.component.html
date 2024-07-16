@@ -31,44 +31,48 @@
                     <button type="button" class="btn btn-outline-dark" (click)="mostrarFormulario()">+ Añadir Tarea</button>
                 </div>
             </header>
-            <section class="tasks">
-                <div class="task" *ngFor="let tarea of tareas">
-                    <div class="task-header">
-                        <input type="checkbox" [checked]="tarea.completeda">
-                        <label>{{ tarea.titulo }}</label>
-                    </div>
-                    <div class="task-footer">
-                       <!--<label>Completada</label>
-                        <input type="checkbox" >-->
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button type="button" class="close"  aria-label="Close" (click)="eliminarTarea(tarea.tareaId)">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="form-group" style="display: none;">
-                        <label>Firebase ID</label>
-                        <br>
-                        <input type="text" 
-                        class="form-control" 
-                        placeholder="Firebase ID" 
-                        disabled="disabled" 
-                        [(ngModel)]="tarea.tareaId"
-                        name="id">
-                        <small class="form-text text-muted"></small>
-                    </div>
-                </div>
+            <section>   
+                    <table class="table">
+                        <tbody>         
+                                <tr *ngFor="let tarea of tareas">
+                                    <td>
+                                        <label>{{ tarea.titulo }}</label>
+                                        <span class="badge badge-primary ml-2" *ngIf="tarea.completeda">Completada</span>    
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-dark" aria-label="Close">
+                                            <span aria-hidden="true" [routerLink]="">Revisar</span>
+                                        </button>
+                                    </td>
+                              
+                                    <td>
+                                        <button type="button" class="close" aria-label="Close" (click)="eliminarTarea(tarea.tareaId)">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <div style="display: none;">
+                                            <label>Firebase ID</label>
+                                            <br>
+                                            <input type="text" class="form-control" placeholder="Firebase ID" disabled="disabled" [(ngModel)]="tarea.tareaId" name="id">
+                                            <small class="form-text text-muted"></small>
+                                        </div>
+                                    </td>
+                                </tr>   
+                        </tbody>
+                    </table>
             </section>
             <br>
             <br>
         <section>
             <!-- Formulario para agregar tarea -->
-            <div class="add-task-container animated fadeIn" *ngIf="mostrarForm">
+            <div class="add-task-container animated fadeIn" *ngIf="mostrarForm" style="z-index:10;">
                 <div class="card">
                     <div class="card-header">
                         <h4>Nueva Tarea</h4>
                     </div>
                     <div class="card-body">
-                        <form (ngSubmit)="guardarDatos(f)" #f="ngForm">
+                        <form (ngSubmit)="guardarTarea(f)" #f="ngForm">
                             <div class="form-group">
                                 <label for="titulo">Título</label>
                                 <input type="text" 

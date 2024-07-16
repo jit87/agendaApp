@@ -18,8 +18,8 @@ export class TareasService {
 
 
 
-  getTareas() {
-    return this.http.get(`${this.url}/tareas.json`);
+  getTareas():Observable<any> {
+        return this.http.get(`${this.url}/tareas.json`);
   }
 
 
@@ -29,9 +29,10 @@ export class TareasService {
   }
 
 
-  elimninarTarea(tareaId: TareaModel): Observable<any> {
+  eliminarTarea(tareaId: TareaModel): Observable<any> {
     console.log(tareaId); 
     const deleteUrl = `${this.url}/tareas/${tareaId}.json`; 
+    console.log(deleteUrl);
     
     return this.http.delete(deleteUrl).pipe(
       catchError((error: HttpErrorResponse) => {
