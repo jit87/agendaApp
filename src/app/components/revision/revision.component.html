@@ -7,39 +7,61 @@
     </div>
     <br>
     <div class="card">
-        <div class="card-header" [(ngModel)]="tarea.tareaId">
+        <div class="card-header">
             <h4>Revision de {{tarea.titulo}}</h4>
         </div>
         <div class="card-body">
-            <form  (ngSubmit)="actualizarTarea(f)" #f="ngForm">
+            <form  (ngSubmit)="guardar(f)" #f="ngForm">
                 <div class="form-group">
                     <label for="titulo">Título</label>
-                    <input type="text" class="form-control" id="titulo" placeholder="Título de la tarea"
-                        name="titulo">
+                    <input type="text" 
+                           class="form-control" 
+                           id="titulo" 
+                           placeholder="Título de la tarea"
+                           name="titulo" 
+                           [(ngModel)]="tarea.titulo">
                 </div>
                 <div class="form-group">
                     <label for="descripcion">Descripción</label>
-                    <textarea class="form-control" id="descripcion" rows="3" placeholder="Descripción de la tarea"
-                        name="descripcion" required></textarea>
+                    <textarea class="form-control" 
+                              id="descripcion" 
+                              rows="3" 
+                              placeholder="Descripción de la tarea"
+                              name="descripcion"
+                              required 
+                              [(ngModel)]="tarea.descripcion"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="vencimiento">Fecha de Vencimiento</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="vencimiento" placeholder="Selecciona una fecha"
-                             name="vencimiento" readonly>
+                        <input type="text" 
+                                class="form-control" 
+                                id="vencimiento" 
+                                placeholder="Selecciona una fecha"
+                                [(ngModel)]="tarea.vencimiento" 
+                                name="vencimiento" 
+                                readonly>
                         <div class="input-group-append">
                             <button  type="button"
-                                class="btn btn-outline-dark">Vencimiento</button>
+                                     class="btn btn-outline-dark" 
+                                     (click)="mostrarCalendario()">Vencimiento</button>
                         </div>
                     </div>
-                    <div class="calendar-container mt-2">
+                    <div class="calendar-container mt-2" *ngIf="calendario">
                         <app-calendar></app-calendar>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="completeda">Estado</label>
+                    <select class="form-control" id="completeda" name="completeda" [(ngModel)]="tarea.completeda">
+                        <option [value]="true">Completada</option>
+                        <option [value]="false">No Completada</option>
+                    </select>
+                </div>
                 <br>
                 <div class="form-group text-right">
-                    <button type="submit" class="btn btn-primary" >Modificar</button>
-                    <button type="button" class="btn btn-danger ml-2">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Modificar</button>
+                   <!--<button type="button" class="btn btn-danger ml-2">Cancelar</button>--> 
                 </div>
             </form>
         </div>

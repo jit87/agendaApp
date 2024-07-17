@@ -23,16 +23,24 @@ export class TareasService {
   }
 
 
+  getTareaById(tareaId: string) {
+   return this.http.get(`${this.url}/tareas/${tareaId}.json`);
+  }
+
+
+
+
    //Añadimos la tarea a la bbdd de Firebase
   crearTarea(tarea: TareaModel): Observable<any> {
     return this.http.post(`${this.url}/tareas.json`, tarea);
   }
 
 
+
+
   eliminarTarea(tareaId: TareaModel): Observable<any> {
-    console.log(tareaId); 
+  
     const deleteUrl = `${this.url}/tareas/${tareaId}.json`; 
-    console.log(deleteUrl);
     
     return this.http.delete(deleteUrl).pipe(
       catchError((error: HttpErrorResponse) => {
@@ -49,9 +57,19 @@ export class TareasService {
   }
 
 
+
+
+
   actualizarTarea(tarea: TareaModel) {
-     return this.http.put(`${this.url}/tareas/${tarea.tareaId}.json`, tarea.tareaId);
+    const tareaTemp = {
+      ...tarea
+    }
+    delete tareaTemp.tareaId; 
+    return this.http.put(`${this.url}/tareas/${tarea.tareaId}.json`, tareaTemp);
   }
+
+
+  
 
    
 

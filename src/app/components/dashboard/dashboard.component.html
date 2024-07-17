@@ -38,16 +38,21 @@
                                 <tr *ngFor="let tarea of tareas">
                                     <td>
                                         <label>{{ tarea.titulo }}</label>
-                                        <span class="badge badge-primary ml-2" *ngIf="tarea.completeda">Completada</span>    
+                                        <span class="badge badge-primary ml-2" 
+                                              *ngIf="tarea.completeda">Completada</span>    
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-outline-dark" aria-label="Close">
-                                            <span aria-hidden="true" [routerLink]="['/revisar', tarea.tareaId]">Revisar</span>
+                                            <span aria-hidden="true" 
+                                                  [routerLink]="['/revisar', tarea.tareaId]">Revisar</span>
                                         </button>
                                     </td>
                               
                                     <td>
-                                        <button type="button" class="close" aria-label="Close" (click)="eliminarTarea(tarea.tareaId)">
+                                        <button type="button" 
+                                                class="close" 
+                                                aria-label="Close" 
+                                                (click)="eliminarTarea(tarea.tareaId)">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </td>
@@ -55,7 +60,12 @@
                                         <div style="display: none;">
                                             <label>Firebase ID</label>
                                             <br>
-                                            <input type="text" class="form-control" placeholder="Firebase ID" disabled="disabled" [(ngModel)]="tarea.tareaId" name="id">
+                                            <input  type="text" 
+                                                    class="form-control" 
+                                                    placeholder="Firebase ID" 
+                                                    disabled="disabled" 
+                                                    [(ngModel)]="tarea.tareaId" 
+                                                    name="id">
                                             <small class="form-text text-muted"></small>
                                         </div>
                                     </td>
