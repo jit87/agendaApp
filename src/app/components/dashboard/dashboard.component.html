@@ -32,14 +32,13 @@
                 </div>
             </header>
             <section>   
-                    <table class="table">
-
+                    <table class="table" *ngIf="tareas.length > 0">
                         <tbody>         
                                 <tr *ngFor="let tarea of tareas">
                                     <td>
                                         <label>{{ tarea.titulo }}</label>
-                                        <span class="badge badge-primary ml-2" 
-                                              *ngIf="tarea.completeda">Completada</span>    
+                                        <span class="badge badge-primary ml-2" *ngIf="tarea.completeda">Completada</span>   
+                                        <span class="badge badge-danger ml-2" *ngIf="!tarea.completeda">No completada</span>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-outline-dark" aria-label="Close">
