@@ -49,14 +49,14 @@
                                         <label>{{ tarea.titulo }}</label>
                                     </td>
                                     <td>
-                                        <span class="badge badge-primary" *ngIf="tarea.completeda">Completada</span>
-                                        <span class="badge badge-danger" *ngIf="!tarea.completeda">No completada</span>
+                                        <span class="badge badge-primary" *ngIf="tarea.completada">Completada</span>
+                                        <span class="badge badge-danger" *ngIf="!tarea.completada">No completada</span>
                                     </td>
                                     <td>
                                          <label>{{ tarea.vencimiento }}</label>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-outline-dark" aria-label="Close">
+                                        <button type="button" class="btn btn-outline-dark btn-sm" aria-label="Close">
                                             <span aria-hidden="true" 
                                                   [routerLink]="['/revisar', tarea.tareaId]">Revisar</span>
                                         </button>

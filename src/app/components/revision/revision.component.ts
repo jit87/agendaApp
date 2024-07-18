@@ -75,13 +75,14 @@ export class RevisionComponent {
 
 
  async getTareaData(ID: string) {
-    this.tareaService.getTareaById(ID).subscribe((resp: any) => { 
+   this.tareaService.getTareaById(ID).subscribe((resp: any) => {   
       this.data = resp; 
+      this.tarea.tareaId = ID;
       this.tarea.titulo = this.data.titulo; 
       this.tarea.descripcion = this.data.descripcion; 
+      this.tarea.completada = this.data.completada; 
       this.tarea.vencimiento = this.data.vencimiento; 
-      this.tarea.tareaId = ID; 
-    });
+   });
   }
 
 

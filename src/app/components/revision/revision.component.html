@@ -34,13 +34,14 @@
                 <div class="form-group">
                     <label for="vencimiento">Fecha de Vencimiento</label>
                     <div class="input-group">
-                        <input type="text" 
+                        <input  type="text" 
                                 class="form-control" 
                                 id="vencimiento" 
                                 placeholder="Selecciona una fecha"
                                 [(ngModel)]="tarea.vencimiento" 
                                 name="vencimiento" 
-                                readonly>
+                                readonly
+                                required>
                         <div class="input-group-append">
                             <button  type="button"
                                      class="btn btn-outline-dark" 
@@ -52,10 +53,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="completeda">Estado</label>
-                    <select class="form-control" id="completeda" name="completeda" [(ngModel)]="tarea.completeda">
-                        <option [value]="true">Completada</option>
-                        <option [value]="false">No Completada</option>
+                    <label for="completada">Estado</label>
+                    <select class="form-control" 
+                            id="completada" 
+                            name="completada" 
+                            [(ngModel)]="tarea.completada">
+                            <option [value]="true">Completada</option>
+                            <option [value]="false">No Completada</option>
                     </select>
                 </div>
                 <br>

@@ -3,7 +3,7 @@ export class TareaModel {
   tareaId?: string;
   titulo: string;
   descripcion: string;
-  completeda: boolean;
+  completada: boolean;
   userId: string;
   vencimiento: string; 
     
@@ -12,7 +12,7 @@ export class TareaModel {
         this.tareaId = ''; 
         this.titulo = '';
         this.descripcion = '';
-        this.completeda = false;
+        this.completada = false;
         this.userId = '';
         this.vencimiento = ''; 
   }
