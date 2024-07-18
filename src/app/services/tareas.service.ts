@@ -64,7 +64,7 @@ export class TareasService {
     const tareaTemp = {
       ...tarea
     }
-    delete tareaTemp.tareaId; 
+    
     return this.http.put(`${this.url}/tareas/${tarea.tareaId}.json`, tareaTemp);
   }
 

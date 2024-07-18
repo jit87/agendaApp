@@ -52,14 +52,14 @@ export class RevisionComponent {
     })
     Swal.showLoading(); 
 
+    console.log(this.tarea);
+
     let peticion: Observable<any>
 
-    if (this.tarea) {
-        peticion = this.tareaService.actualizarTarea(this.tarea);
-    } else {
-        peticion = this.tareaService.crearTarea(this.tarea);
-    }
-
+      
+    peticion = this.tareaService.actualizarTarea(this.tarea);
+    
+   
     peticion.subscribe(resp => {
       Swal.fire({
         title: this.tarea.titulo,
@@ -80,6 +80,7 @@ export class RevisionComponent {
       this.tarea.titulo = this.data.titulo; 
       this.tarea.descripcion = this.data.descripcion; 
       this.tarea.vencimiento = this.data.vencimiento; 
+      this.tarea.tareaId = ID; 
     });
   }
 

@@ -25,20 +25,35 @@
         <main class="main-content">
             <header class="main-header">
                 <div class="header-title">
-                    <h1>Hoy</h1>
+                    <h1>Lista de tareas</h1>
                 </div>
                 <div class="header-actions">
                     <button type="button" class="btn btn-outline-dark" (click)="mostrarFormulario()">+ Añadir Tarea</button>
                 </div>
             </header>
-            <section>   
+            <section>
+                    <h6 *ngIf="tareas.length == 0">No hay tareas pendientes</h6>   
                     <table class="table" *ngIf="tareas.length > 0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Título</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Vencimiento</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
                         <tbody>         
                                 <tr *ngFor="let tarea of tareas">
                                     <td>
                                         <label>{{ tarea.titulo }}</label>
-                                        <span class="badge badge-primary ml-2" *ngIf="tarea.completeda">Completada</span>   
-                                        <span class="badge badge-danger ml-2" *ngIf="!tarea.completeda">No completada</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-primary" *ngIf="tarea.completeda">Completada</span>
+                                        <span class="badge badge-danger" *ngIf="!tarea.completeda">No completada</span>
+                                    </td>
+                                    <td>
+                                         <label>{{ tarea.vencimiento }}</label>
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-outline-dark" aria-label="Close">
@@ -55,11 +70,12 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </td>
-                                    <td>
+                                    <td style="display: none;">
                                         <div style="display: none;">
                                             <label>Firebase ID</label>
                                             <br>
-                                            <input  type="text" 
+                                            <input  style="display: none;"
+                                                    type="text" 
                                                     class="form-control" 
                                                     placeholder="Firebase ID" 
                                                     disabled="disabled" 
