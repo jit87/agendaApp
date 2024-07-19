@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { TareasService } from '../../services/tareas.service';
 import { ActivatedRoute } from '@angular/router';
@@ -19,6 +19,8 @@ export class RevisionComponent {
   data: any; 
   calendario: boolean = false;
 
+    @Output() estadoTarea = new EventEmitter<boolean>();
+
 
 
   constructor(public auth: AuthService, public tareaService: TareasService, private route: ActivatedRoute) {
@@ -32,7 +34,7 @@ export class RevisionComponent {
 
 
   ngInit() {
-    
+   
   }
   
 
@@ -41,7 +43,7 @@ export class RevisionComponent {
 
   guardar(form: NgForm) {
     if (form.invalid) {
-      console.log("Formulario no valido")
+      console.log("Formulario no valido");
       return;
     }
      Swal.fire({
@@ -51,8 +53,6 @@ export class RevisionComponent {
       allowOutsideClick: false
     })
     Swal.showLoading(); 
-
-    console.log(this.tarea);
 
     let peticion: Observable<any>
 
@@ -100,6 +100,10 @@ export class RevisionComponent {
     this.calendario = false; 
   }
 
+
+  recibirFechaSeleccionada(fecha: string) {
+    this.tarea.vencimiento = fecha.toString(); 
+  }
 
 
 

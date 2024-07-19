@@ -21,6 +21,7 @@ export class DashboardComponent {
   fecha: Date = new Date();
   mostrarCalendar: boolean = false; 
   fechaVencimiento: string = "";
+  estadoTarea: boolean = false; 
 
   tarea: TareaModel = new TareaModel(); 
   tareas: TareaModel[] = [];
@@ -33,8 +34,8 @@ export class DashboardComponent {
   }
 
   ngOnInit() {
-      this.cargarTareas();
-      this.getTareaId(); 
+    this.cargarTareas();
+    this.getTareaId(); 
   }   
 
 
@@ -121,11 +122,11 @@ export class DashboardComponent {
           icon: 'info',
           allowOutsideClick: false
         });
-      }
         Swal.showLoading();
         await this.tareaService.eliminarTarea(tareaId).toPromise();
         Swal.close(); 
-      
+      }
+       
       } catch (error) {
         this.errorMessage = error;
         console.error('Error al borrar la tarea:', error);
@@ -133,6 +134,9 @@ export class DashboardComponent {
      
     this.getTareaId();
   }
+
+
+
 
 
   //FORMULARIO
@@ -168,10 +172,10 @@ export class DashboardComponent {
 
 
   recibirFechaSeleccionada(fecha: string) {
-    console.log('Fecha seleccionada:', fecha);
     this.fechaVencimiento = fecha; 
     this.tarea.vencimiento = fecha; 
   }
+
 
 
 

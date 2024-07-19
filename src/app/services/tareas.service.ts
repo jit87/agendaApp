@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TareaModel } from '../models/tarea/tarea.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +67,11 @@ export class TareasService {
     
     return this.http.put(`${this.url}/tareas/${tarea.tareaId}.json`, tareaTemp);
   }
+
+
+
+
+
 
 
   

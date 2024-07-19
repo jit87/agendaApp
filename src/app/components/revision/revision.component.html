@@ -8,7 +8,7 @@
     <br>
     <div class="card">
         <div class="card-header">
-            <h4>Revision de {{tarea.titulo}}</h4>
+            <h4>Revision de <b>{{tarea.titulo}}</b></h4>
         </div>
         <div class="card-body">
             <form  (ngSubmit)="guardar(f)" #f="ngForm">
@@ -40,7 +40,6 @@
                                 placeholder="Selecciona una fecha"
                                 [(ngModel)]="tarea.vencimiento" 
                                 name="vencimiento" 
-                                readonly
                                 required>
                         <div class="input-group-append">
                             <button  type="button"
@@ -48,13 +47,14 @@
                                      (click)="mostrarCalendario()">Vencimiento</button>
                         </div>
                     </div>
-                    <div class="calendar-container mt-2" *ngIf="calendario">
-                        <app-calendar></app-calendar>
+                   <div class="calendar-container mt-2" *ngIf="calendario">
+                        <app-calendar (fechaSeleccionada)="recibirFechaSeleccionada($event)"></app-calendar>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="completada">Estado</label>
-                    <select class="form-control" 
+                    <select type="select"
+                            class="form-control" 
                             id="completada" 
                             name="completada" 
                             [(ngModel)]="tarea.completada">
