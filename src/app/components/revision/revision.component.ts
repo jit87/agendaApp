@@ -19,7 +19,8 @@ export class RevisionComponent {
   data: any; 
   calendario: boolean = false;
 
-    @Output() estadoTarea = new EventEmitter<boolean>();
+
+  @Output() estadoTarea = new EventEmitter<boolean>();
 
 
 
@@ -34,7 +35,7 @@ export class RevisionComponent {
 
 
   ngInit() {
-   
+   this.data = this.getTareaData(this.ID); 
   }
   
 
@@ -59,6 +60,7 @@ export class RevisionComponent {
       
     peticion = this.tareaService.actualizarTarea(this.tarea);
     
+    
    
     peticion.subscribe(resp => {
       Swal.fire({
@@ -68,13 +70,12 @@ export class RevisionComponent {
     });
 
     this.data = this.getTareaData(this.ID); 
-
   }
 
 
 
 
- async getTareaData(ID: string) {
+ getTareaData(ID: string) {
    this.tareaService.getTareaById(ID).subscribe((resp: any) => {   
       this.data = resp; 
       this.tarea.tareaId = ID;
@@ -84,6 +85,8 @@ export class RevisionComponent {
       this.tarea.vencimiento = this.data.vencimiento; 
    });
   }
+
+
 
 
 

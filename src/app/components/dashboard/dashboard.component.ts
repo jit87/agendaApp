@@ -30,7 +30,8 @@ export class DashboardComponent {
 
 
   constructor(public auth: AuthService, public tareaService: TareasService, private route: ActivatedRoute) {
-
+    this.cargarTareas();
+    this.getTareaId(); 
   }
 
   ngOnInit() {
@@ -79,7 +80,7 @@ export class DashboardComponent {
 
 
 
- getTareaId() {
+  getTareaId() {
     this.tareaService.getTareas().subscribe((resp: any) => { 
           this.tareas = Object.keys(resp).map(key => {
             const tarea = resp[key];
@@ -131,7 +132,7 @@ export class DashboardComponent {
         this.errorMessage = error;
         console.error('Error al borrar la tarea:', error);
     } 
-     
+    
     this.getTareaId();
   }
 

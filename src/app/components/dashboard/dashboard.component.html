@@ -49,8 +49,9 @@
                                         <label>{{ tarea.titulo }}</label>
                                     </td>
                                     <td>
-                                        <span class="badge badge-primary" *ngIf="tarea.completada" [(ngModel)]="tarea.completada">Completada</span>
-                                        <span class="badge badge-danger" *ngIf="!tarea.completada" [(ngModel)]="tarea.completada">No completada</span>
+                                        <!--<span class="badge badge" [(ngModel)]="tarea.completada" style="display: none; ">{{tarea.completada}}</span>-->
+                                        <span class="badge badge-danger" *ngIf="!tarea.completada">No completada</span>
+                                        <span class="badge badge-primary" *ngIf="tarea.completada">Completada</span>
                                     </td>
                                     <td>
                                          <label>{{ tarea.vencimiento }}</label>
