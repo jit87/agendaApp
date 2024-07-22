@@ -16,15 +16,16 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { HomeComponent } from './components/home/home.component';
+import { RevisionComponent } from './components/revision/revision.component';
 
 //Rutas
 import { APP_ROUTING } from './app.routes';
-import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../environment';
 import { TareasService } from './services/tareas.service';
-import { RevisionComponent } from './components/revision/revision.component';
+
 
 
 

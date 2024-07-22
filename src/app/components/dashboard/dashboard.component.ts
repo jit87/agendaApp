@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { UsuarioModel } from '../../models/usuario/usuario.model';
 import { AuthService } from '../../services/auth.service';
 import { TareasService } from '../../services/tareas.service';
@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { RevisionComponent } from '../revision/revision.component';
 
 
 @Component({
@@ -22,10 +23,12 @@ export class DashboardComponent {
   mostrarCalendar: boolean = false; 
   fechaVencimiento: string = "";
   estadoTarea: boolean = false; 
+  estadoString: string = "No completada"; 
 
   tarea: TareaModel = new TareaModel(); 
   tareas: TareaModel[] = [];
   errorMessage: unknown;
+
 
 
 
@@ -135,6 +138,8 @@ export class DashboardComponent {
     
     this.getTareaId();
   }
+
+
 
 
 

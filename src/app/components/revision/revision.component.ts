@@ -18,9 +18,7 @@ export class RevisionComponent {
   public ID: string = "";
   data: any; 
   calendario: boolean = false;
-
-
-  @Output() estadoTarea = new EventEmitter<boolean>();
+  isUpdating: boolean = false;
 
 
 
@@ -42,33 +40,31 @@ export class RevisionComponent {
 
   //TAREA
 
+  //Actualiza la tarea al presionar en 'Modificar"
   guardar(form: NgForm) {
     if (form.invalid) {
       console.log("Formulario no valido");
       return;
     }
-     Swal.fire({
+    this.isUpdating = true;
+    Swal.fire({
       title: 'Espere',
       text: 'Guardando información',
       icon: 'info',
       allowOutsideClick: false
     })
     Swal.showLoading(); 
-
     let peticion: Observable<any>
-
-      
     peticion = this.tareaService.actualizarTarea(this.tarea);
-    
-    
-   
     peticion.subscribe(resp => {
       Swal.fire({
         title: this.tarea.titulo,
         text: 'Se actualizó correctamente'
-      });
+      }).then(() => {
+        this.isUpdating = false; 
+        window.location.reload(); 
+      });;
     });
-
     this.data = this.getTareaData(this.ID); 
   }
 
