@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { TareaModel } from '../models/tarea/tarea.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
+import { AuthService } from './auth.service';
+import firebase from 'firebase/compat/app';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +14,11 @@ export class TareasService {
   tarea: TareaModel = new TareaModel; 
   tareas: TareaModel[] = [];
  
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,  private authService: AuthService) { }
 
   private url = "https://agendaapp-22f38-default-rtdb.europe-west1.firebasedatabase.app/"; 
 
-
+ 
 
 
   getTareas():Observable<any> {
@@ -67,6 +70,8 @@ export class TareasService {
     
     return this.http.put(`${this.url}/tareas/${tarea.tareaId}.json`, tareaTemp);
   }
+
+
 
 
 

@@ -25,6 +25,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../environment';
 import { TareasService } from './services/tareas.service';
+import { AuthService } from './services/auth.service';
 
 
 
@@ -47,7 +48,6 @@ import { TareasService } from './services/tareas.service';
      FormsModule,
      HttpClientModule,
      AngularFireModule.initializeApp(environment.firebaseConfig)
-     
   ],
   providers: [TareasService],
   bootstrap: [AppComponent]

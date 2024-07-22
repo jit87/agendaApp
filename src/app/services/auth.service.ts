@@ -7,8 +7,7 @@ import { environment } from '../../environment';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import * as firebase from "firebase/app";
+
 
 
 @Injectable({
@@ -32,7 +31,9 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router ) {
     this.leerToken();
   }
-   
+  
+
+
 
   logout() {
     Swal.fire({

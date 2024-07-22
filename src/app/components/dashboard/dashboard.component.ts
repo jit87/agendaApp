@@ -39,7 +39,7 @@ export class DashboardComponent {
 
   ngOnInit() {
     this.cargarTareas();
-    this.getTareaId(); 
+    this.getTareaId();
   }   
 
 
@@ -186,6 +186,7 @@ export class DashboardComponent {
 
 
 
+  //USUARIO
 
   
 
