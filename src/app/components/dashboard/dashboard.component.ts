@@ -98,9 +98,19 @@ export class DashboardComponent {
 
   async cargarTareas() {
     this.tareaService.getTareas().subscribe((resp: any) => { 
-         this.tareas = Object.keys(resp).map(key => resp[key]);
+        this.tareas = Object.keys(resp).map(
+          key => resp[key]
+      ).filter(resp => resp.userId === this.auth.userEmail);
     });
   }
+
+
+  /*   async cargarTareas() {
+    this.tareaService.getTareas().subscribe((resp: any) => {
+      this.tareas = Object.keys(resp).map(key => resp[key]);
+      this.tareasFiltradas = this.tareas.filter(tarea => tarea.userId === this.auth.userEmail && tarea.completada === false);
+    });
+  } */
 
 
 
@@ -191,7 +201,6 @@ export class DashboardComponent {
     this.usuario = this.auth.leerUsuario(); 
     let usuario = this.usuario; 
     this.tarea.userId = usuario; 
-    console.log(this.tarea.userId); 
   }
 
   

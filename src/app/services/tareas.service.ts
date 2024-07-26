@@ -22,7 +22,7 @@ export class TareasService {
 
 
   getTareas():Observable<any> {
-        return this.http.get(`${this.url}/tareas.json`);
+        return this.http.get(`${this.url}/tareas.json?`);
   }
 
 

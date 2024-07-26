@@ -19,6 +19,7 @@ export class RevisionComponent {
   data: any; 
   calendario: boolean = false;
   isUpdating: boolean = false;
+  usuario: any; 
 
 
 
@@ -32,8 +33,10 @@ export class RevisionComponent {
 
 
 
-  ngInit() {
-   this.data = this.getTareaData(this.ID); 
+  ngOnInit() {
+    this.data = this.getTareaData(this.ID); 
+    this.usuario = this.auth.leerUsuario(); 
+    this.cargarUsuario(); 
   }
   
 
@@ -106,6 +109,14 @@ export class RevisionComponent {
 
 
 
+ //USUARIO
+
+  cargarUsuario() {
+    this.usuario = this.auth.leerUsuario(); 
+    let usuario = this.usuario; 
+    this.tarea.userId = usuario; 
+    console.log(this.tarea.userId); 
+  }
 
 
 
