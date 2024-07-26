@@ -125,10 +125,11 @@ export class AuthService {
 
 
   leerUsuario() {
-    this.userEmail = localStorage.getItem('email'); 
+     return this.userEmail = localStorage.getItem('email'); 
   }
 
 
+  
   
 
 

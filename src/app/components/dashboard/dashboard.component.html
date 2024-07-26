@@ -70,17 +70,16 @@
                                         </button>
                                     </td>
                                     <td style="display: none;">
-                                        <div style="display: none;">
+                                        <div>
                                             <label>Firebase ID</label>
                                             <br>
-                                            <input  style="display: none;"
+                                            <input
                                                     type="text" 
                                                     class="form-control" 
                                                     placeholder="Firebase ID" 
                                                     disabled="disabled" 
                                                     [(ngModel)]="tarea.tareaId" 
                                                     name="id">
-                                            <small class="form-text text-muted"></small>
                                         </div>
                                     </td>
                                 </tr>   
@@ -138,14 +137,22 @@
                                     <app-calendar (fechaSeleccionada)="recibirFechaSeleccionada($event)"></app-calendar>
                                 </div>
                             </div>
-                            <!-- <div class="form-group">
-                                <label for="userId">userID</label>
-                                <textarea class="form-control" 
-                                          id="userId" 
-                                          placeholder="{{auth.userEmail}}"
-                                          [(ngModel)]="tarea.userId" 
-                                          name="userId"> {{auth.userEmail}} </textarea>
-                            </div> -->
+                            <td>
+                            <div class="form-group" style="display: none;">
+                                <label>userID</label>
+                                <br>
+                                <div class="input-group">
+                                    <input type="text" 
+                                           class="form-control"
+                                           [value]="auth.userEmail" 
+                                           disabled="disabled" 
+                                           [(ngModel)]="tarea.userId"
+                                           name="userId" 
+                                           readonly
+                                           placeholder="{{auth.userEmail}}">
+                                </div>
+                            </div>
+                            </td>
                             <br>
                             <div class="form-group text-right">
                                 <button type="submit" class="btn btn-primary">Guardar</button>

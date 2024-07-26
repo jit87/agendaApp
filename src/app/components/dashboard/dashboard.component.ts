@@ -41,6 +41,7 @@ export class DashboardComponent {
     this.cargarTareas();
     this.getTareaId();
     this.usuario = this.auth.leerUsuario(); 
+    this.cargarUsuario(); 
   }   
 
 
@@ -54,22 +55,17 @@ export class DashboardComponent {
       console.log("Formulario no valido")
       return;
     }
-
-    this.tarea.userId = this.usuario; 
-
     Swal.fire({
       title: 'Espere',
       text: 'Guardando información',
       icon: 'info',
       allowOutsideClick: false
     })
-
     Swal.showLoading();
 
     let peticion: Observable<any>
-
     peticion = this.tareaService.crearTarea(this.tarea);
-    
+
     this.ocultarFormulario();
 
     peticion.subscribe(resp => {
@@ -190,6 +186,13 @@ export class DashboardComponent {
 
 
   //USUARIO
+
+  cargarUsuario() {
+    this.usuario = this.auth.leerUsuario(); 
+    let usuario = this.usuario; 
+    this.tarea.userId = usuario; 
+    console.log(this.tarea.userId); 
+  }
 
   
 
