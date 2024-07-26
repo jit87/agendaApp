@@ -18,6 +18,7 @@ export class AuthService {
   private url = 'https://identitytoolkit.googleapis.com/v1/accounts:';
 
   userToken: string | null | undefined;
+  userEmail: string | null | undefined;
 
 
   //INFO:
@@ -67,6 +68,9 @@ export class AuthService {
     ).pipe(
       map((resp: any) => {
         this.guardarToken(resp['idToken']);
+        if (authData.email) {
+          this.guardarUsuario(authData.email);
+        }
         return resp;
       })
     );
@@ -86,6 +90,9 @@ export class AuthService {
     ).pipe(
       map((resp: any) => {
         this.guardarToken(resp['idToken']);
+        if (authData.email) {
+          this.guardarUsuario(authData.email);
+        }
         return resp;
       })
     );
@@ -104,6 +111,22 @@ export class AuthService {
     localStorage.setItem('expira', hoy.getTime().toString());
   }
 
+
+
+
+
+  guardarUsuario(email: string) {
+    localStorage.setItem('email', email); 
+  }
+
+
+
+
+
+
+  leerUsuario() {
+    this.userEmail = localStorage.getItem('email'); 
+  }
 
 
   

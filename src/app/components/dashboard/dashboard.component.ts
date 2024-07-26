@@ -40,6 +40,7 @@ export class DashboardComponent {
   ngOnInit() {
     this.cargarTareas();
     this.getTareaId();
+    this.usuario = this.auth.leerUsuario(); 
   }   
 
 
@@ -53,6 +54,8 @@ export class DashboardComponent {
       console.log("Formulario no valido")
       return;
     }
+
+    this.tarea.userId = this.usuario; 
 
     Swal.fire({
       title: 'Espere',

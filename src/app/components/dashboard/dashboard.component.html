@@ -25,7 +25,7 @@
         <main class="main-content">
             <header class="main-header">
                 <div class="header-title">
-                    <h1>Lista de tareas</h1>
+                    <h1>Lista de tareas de {{ auth.userEmail }}</h1>
                 </div>
                 <div class="header-actions">
                     <button type="button" class="btn btn-outline-dark" (click)="mostrarFormulario()">+ Añadir Tarea</button>
@@ -138,6 +138,14 @@
                                     <app-calendar (fechaSeleccionada)="recibirFechaSeleccionada($event)"></app-calendar>
                                 </div>
                             </div>
+                            <!-- <div class="form-group">
+                                <label for="userId">userID</label>
+                                <textarea class="form-control" 
+                                          id="userId" 
+                                          placeholder="{{auth.userEmail}}"
+                                          [(ngModel)]="tarea.userId" 
+                                          name="userId"> {{auth.userEmail}} </textarea>
+                            </div> -->
                             <br>
                             <div class="form-group text-right">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
