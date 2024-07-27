@@ -39,9 +39,9 @@ export class DashboardComponent {
 
   ngOnInit() {
     this.cargarTareas();
-    this.getTareaId();
     this.usuario = this.auth.leerUsuario(); 
     this.cargarUsuario(); 
+    this.getTareaId();
   }   
 
 
@@ -75,7 +75,6 @@ export class DashboardComponent {
       });
       this.getTareaId();
     });
- 
   }
 
 
@@ -100,15 +99,17 @@ export class DashboardComponent {
     this.tareaService.getTareas().subscribe((resp: any) => { 
         this.tareas = Object.keys(resp).map(
           key => resp[key]
-      ).filter(resp => resp.userId === this.auth.userEmail);
+      )
     });
   }
 
-
-  /*   async cargarTareas() {
-    this.tareaService.getTareas().subscribe((resp: any) => {
+   /*  tareasFiltradas: TareaModel[] = [];
+    async cargarTareas() {
+      this.tareaService.getTareas().subscribe((resp: any) => {
+      this.getTareaId();
       this.tareas = Object.keys(resp).map(key => resp[key]);
-      this.tareasFiltradas = this.tareas.filter(tarea => tarea.userId === this.auth.userEmail && tarea.completada === false);
+      this.tareasFiltradas = this.tareas.filter(tarea => tarea.userId === this.auth.userEmail); 
+      console.log(this.tareasFiltradas);
     });
   } */
 

@@ -22,16 +22,20 @@ export class TareasService {
 
 
   getTareas():Observable<any> {
-        return this.http.get(`${this.url}/tareas.json?`);
+     return this.http.get(`${this.url}/tareas.json?`);
   }
 
 
   getTareaById(tareaId: string) {
-   return this.http.get(`${this.url}/tareas/${tareaId}.json`);
+     return this.http.get(`${this.url}/tareas/${tareaId}.json`);
   }
 
 
-
+/*   asignarIdTarea(tarea: TareaModel) {
+    return this.http.patch(`${this.url}/tareas/${tarea.tareaId}.json`, { tareaId: tarea.tareaId });
+  }
+ */
+  
 
    //Añadimos la tarea a la bbdd de Firebase
   crearTarea(tarea: TareaModel): Observable<any> {
