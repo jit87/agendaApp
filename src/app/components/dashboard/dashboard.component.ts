@@ -24,11 +24,10 @@ export class DashboardComponent {
   fechaVencimiento: string = "";
   estadoTarea: boolean = false; 
   estadoString: string = "No completada"; 
-
   tarea: TareaModel = new TareaModel(); 
   tareas: TareaModel[] = [];
   errorMessage: unknown;
-
+  tareasFiltradas: TareaModel[] = [];  
 
 
 
@@ -80,7 +79,7 @@ export class DashboardComponent {
 
 
 
-
+ 
   getTareaId() {
     this.tareaService.getTareas().subscribe((resp: any) => { 
           this.tareas = Object.keys(resp).map(key => {
@@ -88,6 +87,8 @@ export class DashboardComponent {
             tarea.tareaId = key;   
             return tarea;
           });
+          // Filtramos por el email del usuario
+          this.tareasFiltradas = this.tareas.filter(tarea => tarea.userId === this.usuario); 
        });
   }
 
@@ -95,23 +96,20 @@ export class DashboardComponent {
 
 
 
-  async cargarTareas() {
-    this.tareaService.getTareas().subscribe((resp: any) => { 
-        this.tareas = Object.keys(resp).map(
-          key => resp[key]
-      )
-    });
-  }
 
-   /*  tareasFiltradas: TareaModel[] = [];
-    async cargarTareas() {
-      this.tareaService.getTareas().subscribe((resp: any) => {
-      this.getTareaId();
-      this.tareas = Object.keys(resp).map(key => resp[key]);
-      this.tareasFiltradas = this.tareas.filter(tarea => tarea.userId === this.auth.userEmail); 
-      console.log(this.tareasFiltradas);
+ async cargarTareas() {
+    this.tareaService.getTareas().subscribe((resp: any) => { 
+      this.tareas = Object.keys(resp).map(key => {
+        const tarea = resp[key];
+        tarea.tareaId = key;
+        return tarea;
+      });
+      this.tareasFiltradas = this.tareas.filter(tarea => tarea.userId === this.usuario);
+      console.log('Tareas filtradas:', this.tareasFiltradas); 
     });
-  } */
+}
+
+
 
 
 

@@ -32,8 +32,8 @@
                 </div>
             </header>
             <section>
-                    <h6 *ngIf="tareas.length == 0">No hay tareas pendientes</h6>   
-                    <table class="table" *ngIf="tareas.length > 0">
+                    <h6 *ngIf="tareasFiltradas.length == 0">No hay tareas pendientes</h6>   
+                    <table class="table" *ngIf="tareasFiltradas.length > 0">
                         <thead>
                             <tr>
                                 <th scope="col">Título</th>
@@ -44,7 +44,7 @@
                             </tr>
                         </thead>
                         <tbody>         
-                                <tr *ngFor="let tarea of tareas">
+                                <tr *ngFor="let tarea of tareasFiltradas">
                                     <td>
                                         <label>{{ tarea.titulo }}</label>
                                     </td>

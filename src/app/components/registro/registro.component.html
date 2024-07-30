@@ -15,7 +15,7 @@
 
                     <span class="focus-input100"></span>
                 </div>
-
+                 
                 <span *ngIf="f.submitted && f.controls['nombre'].errors" class="text-danger animated fadeIn">El nombre
                     es
                     obligatorio</span>
@@ -25,7 +25,7 @@
 
                     <span class="focus-input100"></span>
                 </div>
-
+                
                 <span *ngIf="f.submitted && f.controls['pass'].errors" class="text-danger animated fadeIn">Al menos 6
                     letras</span>
                 <div class="wrap-input100 m-b-16" data-validate="Password is required">
@@ -33,7 +33,7 @@
                         placeholder="Password">
                     <span class="focus-input100"></span>
                 </div>
-
+               
                 <div class="flex-sb-m w-full p-t-3 p-b-24">
                     <div class="contact100-form-checkbox">
                         <input [(ngModel)]="recordarme" class="input-checkbox100" id="ckb1" type="checkbox"
