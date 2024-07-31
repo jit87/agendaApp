@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { RevisionComponent } from '../revision/revision.component';
+import { OrdenarPorFechaPipe } from '../../pipes/ordenar-por-fecha.pipe';
 
 
 @Component({
@@ -28,12 +29,15 @@ export class DashboardComponent {
   tareas: TareaModel[] = [];
   errorMessage: unknown;
   tareasFiltradas: TareaModel[] = [];  
+  
+  
 
 
 
   constructor(public auth: AuthService, public tareaService: TareasService, private route: ActivatedRoute) {
     this.cargarTareas();
-    this.getTareaId(); 
+    this.getTareaId();  
+    
   }
 
   ngOnInit() {

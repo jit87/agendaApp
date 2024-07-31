@@ -26,6 +26,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../environment';
 import { TareasService } from './services/tareas.service';
 import { AuthService } from './services/auth.service';
+import { OrdenarPorFechaPipe } from './pipes/ordenar-por-fecha.pipe';
 
 
 
@@ -39,7 +40,8 @@ import { AuthService } from './services/auth.service';
     LoginComponent,
     RegistroComponent,
     CalendarComponent,
-    RevisionComponent
+    RevisionComponent,
+    OrdenarPorFechaPipe
   ],
   imports: [
      BrowserModule,

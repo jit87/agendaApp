@@ -5,6 +5,7 @@ import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 import firebase from 'firebase/compat/app';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -14,17 +15,22 @@ export class TareasService {
   tarea: TareaModel = new TareaModel; 
   tareas: TareaModel[] = [];
  
-  constructor(private http: HttpClient,  private authService: AuthService) { }
+  constructor(private http: HttpClient,  private authService: AuthService, private firestore: AngularFirestore) { }
 
   private url = "https://agendaapp-22f38-default-rtdb.europe-west1.firebasedatabase.app/"; 
 
  
 
 
-  getTareas():Observable<any> {
-     return this.http.get(`${this.url}/tareas.json?`);
-  }
 
+   getTareas():Observable<any> {
+     return this.http.get(`${this.url}/tareas.json?`);
+  } 
+
+ /* getTareas():Observable<any> {
+      return this.firestore.collection('tareas', ref => ref.orderBy('fecha')).valueChanges();
+  }
+*/
 
   getTareaById(tareaId: string) {
      return this.http.get(`${this.url}/tareas/${tareaId}.json`);
