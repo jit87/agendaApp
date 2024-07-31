@@ -65,7 +65,7 @@ export class RevisionComponent {
         text: 'Se actualizó correctamente'
       }).then(() => {
         this.isUpdating = false; 
-        window.location.reload(); 
+        window.location.reload();
       });;
     });
     this.data = this.getTareaData(this.ID); 

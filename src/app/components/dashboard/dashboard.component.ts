@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { UsuarioModel } from '../../models/usuario/usuario.model';
 import { AuthService } from '../../services/auth.service';
 import { TareasService } from '../../services/tareas.service';
@@ -23,8 +23,6 @@ export class DashboardComponent {
   fecha: Date = new Date();
   mostrarCalendar: boolean = false; 
   fechaVencimiento: string = "";
-  estadoTarea: boolean = false; 
-  estadoString: string = "No completada"; 
   tarea: TareaModel = new TareaModel(); 
   tareas: TareaModel[] = [];
   errorMessage: unknown;
@@ -34,7 +32,7 @@ export class DashboardComponent {
 
 
 
-  constructor(public auth: AuthService, public tareaService: TareasService, private route: ActivatedRoute) {
+  constructor(public auth: AuthService, public tareaService: TareasService, private route: ActivatedRoute, private cd: ChangeDetectorRef) {
     this.cargarTareas();
     this.getTareaId();  
     
@@ -93,7 +91,7 @@ export class DashboardComponent {
           });
           // Filtramos por el email del usuario
           this.tareasFiltradas = this.tareas.filter(tarea => tarea.userId === this.usuario); 
-       });
+    });
   }
 
 
@@ -150,8 +148,6 @@ export class DashboardComponent {
     
     this.getTareaId();
   }
-
-
 
 
 
