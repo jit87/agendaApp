@@ -1,3 +1,4 @@
+//Modulos
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
@@ -7,19 +8,13 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-
+import { ComponentsModule } from './components/components.module';
 
 //Componentes
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegistroComponent } from './components/registro/registro.component';
-import { CalendarComponent } from './components/calendar/calendar.component';
-import { HomeComponent } from './components/home/home.component';
-import { RevisionComponent } from './components/revision/revision.component';
 
-//Rutas
+
+//Otros
 import { APP_ROUTING } from './app.routes';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -31,16 +26,10 @@ import { OrdenarPorFechaPipe } from './pipes/ordenar-por-fecha.pipe';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    NavbarComponent,
-    DashboardComponent,
-    LoginComponent,
-    RegistroComponent,
-    CalendarComponent,
-    RevisionComponent,
     OrdenarPorFechaPipe
   ],
   imports: [
@@ -48,6 +37,7 @@ import { OrdenarPorFechaPipe } from './pipes/ordenar-por-fecha.pipe';
      RouterModule,
      APP_ROUTING,
      FormsModule,
+     ComponentsModule,
      HttpClientModule,
      AngularFireModule.initializeApp(environment.firebaseConfig)
   ],

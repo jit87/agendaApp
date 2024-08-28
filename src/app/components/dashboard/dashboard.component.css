@@ -90,3 +90,23 @@ body {
     font-size: 24px;
 }
 
+
+
+ /* Estilo para el formulario fijo */
+ .fixed-form {
+    position: fixed;
+    bottom: 50%;
+    left: 55%;
+    transform: translate(-50%, 50%);
+    width: 60%;
+    max-width: 600px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+       
+ }
+
+
+
+

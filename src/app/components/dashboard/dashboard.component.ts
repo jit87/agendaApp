@@ -84,6 +84,7 @@ export class DashboardComponent {
  
   getTareaId() {
     this.tareaService.getTareas().subscribe((resp: any) => { 
+      if(resp)
           this.tareas = Object.keys(resp).map(key => {
             const tarea = resp[key];
             tarea.tareaId = key;   
@@ -100,7 +101,8 @@ export class DashboardComponent {
 
 
  async cargarTareas() {
-    this.tareaService.getTareas().subscribe((resp: any) => { 
+   this.tareaService.getTareas().subscribe((resp: any) => { 
+    if(resp)
       this.tareas = Object.keys(resp).map(key => {
         const tarea = resp[key];
         tarea.tareaId = key;
@@ -152,6 +154,88 @@ export class DashboardComponent {
 
 
 
+
+ //Eliminar todas las tareas para un usuario concreto
+/*async limpiarListado(userEmail: any) {
+  this.tareaService.getTareas().subscribe(async (tareas: any) => {
+    if (tareas) {
+      const listaDeTareas = Object.values(tareas);
+
+      try {
+        // Mostrar confirmación antes de eliminar
+        const result = await Swal.fire({
+          title: '¿Estás seguro?',
+          text: "No podrás revertir esto",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, eliminar todas',
+          cancelButtonText: 'Cancelar'
+        });
+
+        if (result.isConfirmed) {
+          // Mostrar mensaje de carga mientras se eliminan las tareas
+          Swal.fire({
+            title: 'Espere',
+            text: 'Eliminando las tareas...',
+            icon: 'info',
+            allowOutsideClick: false,
+            showConfirmButton: false
+          });
+
+          // Filtra las tareas que coincidan con el userEmail proporcionado
+          const tareasAEliminar = listaDeTareas.filter((tarea: any) => tarea.userId === userEmail);
+
+          if (tareasAEliminar.length === 0) {
+            Swal.fire({
+              title: 'Información',
+              text: 'No se encontraron tareas para eliminar para este usuario.',
+              icon: 'info',
+              confirmButtonText: 'Aceptar'
+            });
+            return; // Salir si no hay tareas para eliminar
+          }
+
+          // Mapea las tareas a eliminar y espera que todas las promesas se resuelvan
+          const eliminacionesPromises = tareasAEliminar.map((tarea: any) => {
+            return this.tareaService.eliminarTareasUsuario(tarea.userId).toPromise();
+          });
+
+          // Ejecuta todas las promesas y espera a que se completen
+          await Promise.all(eliminacionesPromises);
+
+          Swal.fire({
+            title: '¡Eliminado!',
+            text: 'Todas las tareas del usuario han sido eliminadas.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          }).then(() => {
+            window.location.reload(); // Recargar la página o llama a this.cargarTareas(); para actualizar la lista sin recargar
+          });
+        }
+      } catch (error) {
+        console.error('Error al eliminar tareas:', error);
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error al eliminar las tareas.',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    } else {
+      console.log('No se encontraron tareas para eliminar.');
+      Swal.fire({
+        title: 'Información',
+        text: 'No se encontraron tareas para eliminar.',
+        icon: 'info',
+        confirmButtonText: 'Aceptar'
+      });
+    }
+  });
+}
+*/
+  
 
   //FORMULARIO
 

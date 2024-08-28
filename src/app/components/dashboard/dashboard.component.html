@@ -17,8 +17,10 @@
                 <ul>
                     <li><a href="#">Hoy</a></li>
                     <li><a href="#">Próximos 7 días</a></li>
-                    <li><a href="#">Etiquetas</a></li>
-                    <li><a href="#">Filtro</a></li>
+                   <!-- <li><button type="button" 
+                                class="btn btn-outline-danger" 
+                                style="margin-left: 8px;"
+                                (click)="limpiarListado(auth.userEmail)">Limpiar listado</button></li>-->
                 </ul>
             </nav>
         </aside>
@@ -94,7 +96,7 @@
             <br>
         <section>
             <!-- Formulario para agregar tarea -->
-            <div class="add-task-container animated fadeIn" *ngIf="mostrarForm" style="z-index:10;">
+            <div  class="add-task-container animated fadeIn fixed-form" *ngIf="mostrarForm" style="z-index:10;">
                 <div class="card">
                     <div class="card-header">
                         <h4>Nueva Tarea</h4>

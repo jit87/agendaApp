@@ -63,6 +63,29 @@ export class TareasService {
 
 
 
+   /*eliminarTareasUsuario(userId: TareaModel): Observable<any> {
+  
+    const deleteUrl = `${this.url}/tareas/${userId}.json`; 
+    
+    return this.http.delete(deleteUrl).pipe(
+      catchError((error: HttpErrorResponse) => {
+          let errorMessage: string;
+          if (error.error instanceof ErrorEvent) {
+            errorMessage = `Error del cliente: ${error.error.message}`;
+          } else {
+            errorMessage = `Error del servidor: ${error.status} - ${error.message}`;
+          }
+        console.error(errorMessage);
+        return throwError(errorMessage);
+      })
+    );
+  }*/
+
+
+
+
+
+
 
 
   actualizarTarea(tarea: TareaModel) {
