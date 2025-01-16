@@ -1,27 +1,55 @@
 # AgendaApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.5.
+**AgendaApp** es una aplicación de gestión personal que permite a los usuarios organizar sus tareas y eventos de manera eficiente. Desarrollada con **Angular** para el frontend y **Firebase** para el backend, ofrece una interfaz intuitiva y funcionalidades en tiempo real para mejorar la productividad diaria.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### **Funcionalidades Principales**
 
-## Code scaffolding
+- **Gestión de Tareas**: Permite crear, editar y eliminar tareas con facilidad.
+- **Organización por Categorías**: Clasifica las tareas en diferentes categorías para una mejor organización.
+- **Notificaciones en Tiempo Real**: Recibe alertas y recordatorios gracias a la integración con Firebase.
+- **Sincronización Multidispositivo**: Accede a tus tareas desde cualquier dispositivo con sincronización en la nube.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+### **Tecnologías Utilizadas**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Frontend**: Angular 12
+- **Backend**: Firebase
+- **Autenticación**: Firebase Authentication
+- **Base de Datos**: Cloud Firestore
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### **Estructura del Proyecto**
 
-## Running end-to-end tests
+- `/src`: Contiene el código fuente de la aplicación Angular.
+- `/src/app`: Incluye los componentes, servicios y módulos principales de la aplicación.
+- `/src/environments`: Archivos de configuración para diferentes entornos (desarrollo y producción).
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+---
 
-## Further help
+### **Instalación y Ejecución**
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. **Clonar el Repositorio**:
+   ```bash
+   git clone https://github.com/jit87/agendaApp.git
+   ```
+
+2. **Instalar Dependencias**:
+   ```bash
+   cd agendaApp
+   npm install
+   ```
+
+3. **Configurar Firebase**:
+   - Crea un proyecto en [Firebase](https://firebase.google.com/).
+   - Configura la autenticación y la base de datos Firestore.
+   - Copia la configuración de Firebase y reemplaza los valores en el archivo `src/environments/environment.ts`.
+
+4. **Ejecutar la Aplicación**:
+   ```bash
+   ng serve
+   ```
+   - Accede a la aplicación en `http://localhost:4200/`.
