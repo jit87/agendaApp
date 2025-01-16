@@ -7,8 +7,6 @@
 ### **Funcionalidades Principales**
 
 - **Gestión de Tareas**: Permite crear, editar y eliminar tareas con facilidad.
-- **Notificaciones en Tiempo Real**: Recibe alertas y recordatorios gracias a la integración con Firebase.
-- **Sincronización Multidispositivo**: Accede a tus tareas desde cualquier dispositivo con sincronización en la nube.
 
 ---
 
